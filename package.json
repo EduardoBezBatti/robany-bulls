@@ -1,0 +1,20 @@
+{
+  "name": "robany-bulls-vitrine",
+  "version": "1.0.0",
+  "description": "Vitrine virtual de filhotes - Projeto de Extensão Univali (Programação Web)",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js",
+    "dev": "node --watch server.js",
+    "seed": "node src/seed/seed.js"
+  },
+  "engines": { "node": ">=18" },
+  "dependencies": {
+    "dotenv": "^16.4.5",
+    "express": "^4.19.2",
+    "express-rate-limit": "^7.4.0",
+    "helmet": "^7.1.0",
+    "mongoose": "^8.5.0"
+  },
+  "license": "MIT"
+}
