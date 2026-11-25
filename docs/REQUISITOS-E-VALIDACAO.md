@@ -17,7 +17,7 @@ Estes identificadores refletem os comentários do código e a documentação ini
 
 ## Procedimentos reproduzíveis
 
-Não há comando `npm test`, suíte automatizada, linter ou CI configurados. Execute cenários que alteram dados em uma base exclusiva de desenvolvimento.
+`npm test` executa a suíte de integração administrativa em uma base temporária; exige MongoDB acessível. Veja [Administração](ADMINISTRACAO.md#validação). Não há linter ou CI configurados. Execute os demais cenários que alteram dados em uma base exclusiva de desenvolvimento.
 
 ```bash
 node --check server.js
@@ -85,9 +85,11 @@ A instalação inicial concluiu sem vulnerabilidades reportadas pelo npm naquele
 
 Na preparação para publicação também foram conferidos sintaxe dos arquivos JavaScript, recursos estáticos e respostas de sucesso e erro dos endpoints. O resultado de auditorias de dependências varia com o tempo. Não houve teste de hospedagem em produção, carga ou auditoria formal de segurança/acessibilidade.
 
+Após a implementação administrativa, `npm test` validou login, autorização, CRUD, proteção das escritas, alteração de senha, revogação, expiração, logout e limite de tentativas em uma base isolada. No navegador foram conferidos login, edição e gravação de um filhote, formulário de depoimentos, versão desktop/celular e saída da conta. Isso não constitui auditoria formal de segurança ou acessibilidade.
+
 ## Limitações
 
-- Sem login, painel, API de escrita, upload, busca ou paginação.
+- O painel possui login e API de escrita; ainda não há upload, busca ou paginação.
 - Sem checkout, reservas online ou notificações implementadas.
 - Sem migrações, backup integrado, health check dedicado ou monitoramento.
 - Rate limit por processo; implantação com proxy requer revisão.

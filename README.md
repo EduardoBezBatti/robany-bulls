@@ -26,7 +26,7 @@ As versões resolvidas estão em `package-lock.json`.
 
 ## Início rápido
 
-Requisitos: Git, Node.js com npm e MongoDB acessível. O manifesto exige Node.js >= 18; use uma versão LTS ainda suportada. A instalação local inicial foi executada com Node.js 24.
+Requisitos: Git, Node.js >= 22 com npm e MongoDB acessível. A instalação local inicial foi executada com Node.js 24.
 
 ```bash
 git clone https://github.com/EduardoBezBatti/robany-bulls.git
@@ -73,8 +73,10 @@ Para demonstração, execute `npm run seed` em uma base exclusiva de desenvolvim
 | `npm start` | Executa `node server.js` |
 | `npm run dev` | Executa com reinício por mudanças, via `node --watch` |
 | `npm run seed` | Substitui as duas coleções por dados demonstrativos |
+| `npm run admin:create` | Cria o administrador com senha informada no terminal |
+| `npm test` | Valida autenticação e gestão em uma base temporária |
 
-Não há etapa de build, suíte automatizada ou linter configurados.
+Não há etapa de build ou linter configurados. Para ativar o painel em `/admin/`, execute `npm run admin:create` e reinicie o servidor. Veja o [guia de administração](docs/ADMINISTRACAO.md).
 
 ## Documentação completa
 
@@ -84,6 +86,7 @@ Não há etapa de build, suíte automatizada ou linter configurados.
 4. [Dados e administração](docs/DADOS.md): schemas, regras e gestão pelo MongoDB.
 5. [Requisitos e validação](docs/REQUISITOS-E-VALIDACAO.md): rastreabilidade, verificações e limitações.
 6. [Contribuição](CONTRIBUTING.md): fluxo de desenvolvimento e revisão.
+7. [Administração](docs/ADMINISTRACAO.md): login, provisionamento, recuperação de senha e API protegida.
 
 ## Personalização
 

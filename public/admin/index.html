@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Administração · Robany Bulls Poms</title>
+  <meta name="robots" content="noindex, nofollow">
+  <link rel="stylesheet" href="/css/style.css">
+  <link rel="stylesheet" href="/admin/admin.css">
+  <script src="/admin/admin.js" defer></script>
+</head>
+<body>
+  <header class="admin-header container">
+    <a class="brand" href="/">Robany <small>Bulls Poms · Canil</small></a>
+    <a class="back-link" href="/">Ver vitrine ↗</a>
+  </header>
+  <main class="container admin-main">
+    <p id="notice" role="status" aria-live="polite">Verificando acesso…</p>
+    <section id="login" class="login-card" hidden aria-labelledby="login-title">
+      <span class="login-icon" aria-hidden="true">R</span>
+      <p class="eyebrow">Área administrativa</p>
+      <h1 id="login-title">Bem-vindo de volta.</h1>
+      <p class="sub">Entre para cuidar da sua vitrine.</p>
+      <form id="login-form">
+        <label>E-mail<input name="email" type="email" autocomplete="username" required maxlength="254"></label>
+        <label>Senha<input name="password" type="password" autocomplete="current-password" required maxlength="128"></label>
+        <button class="btn btn--moss" type="submit">Entrar no painel</button>
+      </form>
+      <p class="caption">Acesso exclusivo da administração do canil.</p>
+    </section>
+
+    <section id="dashboard" hidden aria-labelledby="dashboard-title">
+      <div class="dashboard-heading">
+        <div><p class="eyebrow">Sua vitrine, sempre atualizada</p><h1 id="dashboard-title">Painel do canil</h1><p id="identity" class="sub"></p></div>
+        <button id="logout" class="btn btn--outline" type="button">Sair da conta</button>
+      </div>
+      <div id="stats" class="stats" aria-label="Resumo da vitrine"></div>
+      <div class="workspace-bar">
+        <div class="switcher" aria-label="Tipo de conteúdo">
+          <button type="button" data-section="animais" class="active" aria-pressed="true">Filhotes</button>
+          <button type="button" data-section="depoimentos" aria-pressed="false">Depoimentos</button>
+        </div>
+        <button id="new-record" class="btn btn--moss" type="button">+ Novo filhote</button>
+      </div>
+      <div id="records" class="records" aria-live="polite"></div>
+      <details class="password-section">
+        <summary>Alterar minha senha</summary>
+        <form id="password-form">
+          <label>Senha atual<input name="currentPassword" type="password" autocomplete="current-password" required maxlength="128"></label>
+          <label>Nova senha<input name="newPassword" type="password" autocomplete="new-password" minlength="12" maxlength="128" required></label>
+          <p class="caption">Use pelo menos 12 caracteres. As outras sessões serão encerradas.</p>
+          <button class="btn btn--moss" type="submit">Atualizar senha</button>
+        </form>
+      </details>
+    </section>
+
+    <dialog id="editor" aria-labelledby="editor-title">
+      <div class="dialog-heading"><h2 id="editor-title">Novo filhote</h2><button id="close-editor" class="icon-button" type="button" aria-label="Fechar formulário">×</button></div>
+      <p id="editor-error" role="alert"></p>
+      <form id="record-form">
+        <div id="fields" class="form-grid"></div>
+        <div class="dialog-actions"><button id="cancel-editor" type="button" class="btn btn--outline">Cancelar</button><button type="submit" class="btn btn--moss">Salvar alterações</button></div>
+      </form>
+    </dialog>
+    <dialog id="delete-dialog" aria-labelledby="delete-title">
+      <h2 id="delete-title">Excluir registro?</h2>
+      <p id="delete-description" class="sub"></p>
+      <p id="delete-error" role="alert"></p>
+      <div class="dialog-actions"><button id="cancel-delete" type="button" class="btn btn--outline">Cancelar</button><button id="confirm-delete" type="button" class="btn btn--danger">Excluir definitivamente</button></div>
+    </dialog>
+  </main>
+  <footer class="container admin-footer">Robany Bulls Poms · Administração</footer>
+</body>
+</html>

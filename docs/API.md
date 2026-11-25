@@ -1,6 +1,6 @@
 # API HTTP
 
-Base local: `http://localhost:3000`. Não há autenticação, paginação, filtros fornecidos pelo usuário ou endpoints de escrita. O limite para `/api` é de 120 requisições por minuto por IP.
+Base local: `http://localhost:3000`. Os endpoints públicos abaixo não exigem autenticação e não possuem paginação ou filtros fornecidos pelo usuário. O limite geral para `/api` é de 120 requisições por minuto por IP. Login e operações de escrita ficam nas [APIs protegidas da administração](ADMINISTRACAO.md#api-protegida).
 
 | Método | Caminho | Resultado |
 | --- | --- | --- |
@@ -100,4 +100,4 @@ Filtra `autorizado: true`, ordena por criação decrescente e retorna `[]` com 2
 | 429 | Limite excedido | Mensagem padrão do express-rate-limit, sem envelope JSON personalizado |
 | 500 | Exceção encaminhada ao handler genérico | `{"erro":"Erro interno do servidor."}` |
 
-Fora de `/api`, arquivos inexistentes seguem o 404 padrão do Express. Não há envelope único para todos os erros de middleware; o handler genérico também pode transformar erros encaminhados em 500 sem preservar seu status original.
+Fora de `/api`, arquivos inexistentes seguem o 404 padrão do Express. O parser JSON retorna 400 para conteúdo malformado e 413 acima do limite de 32 KB. Outros erros encaminhados ao handler genérico podem virar 500 sem preservar seu status original. Erros de autenticação seguem o formato próprio do Better Auth.

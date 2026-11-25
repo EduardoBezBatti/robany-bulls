@@ -2,7 +2,7 @@
 
 ## Requisitos e instalação
 
-Use Git, Node.js com npm e MongoDB acessível, local ou Atlas. O manifesto exige Node.js >= 18; prefira uma versão LTS ainda suportada. A instalação local inicial usou Node.js 24. Não há build ou compilação.
+Use Git, Node.js >= 22 com npm e MongoDB acessível, local ou Atlas. A instalação local inicial usou Node.js 24. Não há build ou compilação.
 
 ```bash
 git clone https://github.com/EduardoBezBatti/robany-bulls.git
@@ -29,6 +29,11 @@ cp .env.example .env
 | `PORT` | Não | Porta HTTP; padrão 3000 |
 | `MONGODB_URI` | Sim | URI da base; ausência impede inicialização |
 | `WHATSAPP_NUMBER` | Não | Telefone público; API remove caracteres não numéricos |
+| `ADMIN_EMAIL` | Para o painel | E-mail autorizado na administração |
+| `BETTER_AUTH_SECRET` | Para o painel | Segredo aleatório de pelo menos 32 caracteres |
+| `BETTER_AUTH_URL` | Para o painel | Origem da aplicação; HTTPS obrigatório em produção |
+
+Configure as três variáveis administrativas juntas, ou use `npm run admin:create`. Sem elas, a vitrine continua disponível, mas as APIs administrativas retornam 503. Veja [Administração](ADMINISTRACAO.md).
 
 Exemplo local:
 
@@ -72,7 +77,7 @@ Publicar no GitHub não hospeda o servidor. GitHub Pages não executa este backe
 
 1. Conecte o repositório à hospedagem escolhida.
 2. Instale com `npm ci --omit=dev`; não há build obrigatório.
-3. Configure `MONGODB_URI`, `WHATSAPP_NUMBER` e a porta requerida pelo ambiente.
+3. Configure `MONGODB_URI`, `WHATSAPP_NUMBER`, as três variáveis administrativas e a porta requerida pelo ambiente. Provisione a conta na base de produção pelo comando administrativo.
 4. Use `npm start` como comando de execução.
 5. Disponibilize HTTPS no serviço ou proxy e verifique página, recursos estáticos e APIs.
 6. Use base de produção separada e acesso restrito. Não execute seed nela.

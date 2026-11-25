@@ -17,7 +17,7 @@ npm run dev
 - Inclua `package.json` e `package-lock.json` juntos quando mudar dependências.
 - Não versione `.env`, dependências instaladas, logs, bancos, backups ou imagens sem autorização.
 
-Execute os procedimentos relevantes de [validação](docs/REQUISITOS-E-VALIDACAO.md). Para interface, confira desktop, celular e teclado. Ainda não existe suíte automatizada.
+Execute `npm test` e os procedimentos relevantes de [validação](docs/REQUISITOS-E-VALIDACAO.md). Para interface, confira desktop, celular e teclado. A suíte usa uma base temporária separada e exige MongoDB acessível.
 
 ```bash
 git diff --check

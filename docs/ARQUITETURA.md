@@ -24,6 +24,11 @@ flowchart LR
 | `public/css/style.css` | Identidade visual, cards e responsividade |
 | `public/js/app.js` | Consumo da API, montagem do DOM e links de contato |
 | `src/config/db.js` | Conexão com MongoDB via Mongoose |
+| `src/config/auth.mjs` | Better Auth em ESM, adaptador MongoDB e configuração de sessão |
+| `src/routes/admin.js` | Autorização, validação e CRUD administrativo |
+| `src/scripts/create-admin.mjs` | Provisionamento e recuperação de senha pelo terminal |
+| `public/admin/` | Tela de login e painel administrativo |
+| `test/admin.test.cjs` | Teste de integração com base temporária |
 | `src/models/Animal.js` | Schema de animais e enum de status |
 | `src/models/Depoimento.js` | Schema de depoimentos e autorização |
 | `src/routes/animais.js` | Listagem e consulta por identificador |
@@ -41,7 +46,7 @@ flowchart LR
 
 O servidor carrega a configuração e registra Helmet, parser JSON, rate limit, rotas e tratamento de erros. Só abre a porta HTTP depois de conectar ao MongoDB. Em falha de conexão, termina com código 1. Não existe procedimento próprio de desligamento gracioso.
 
-Rotas cuidam de HTTP e validação do identificador; serviços aplicam filtros; models definem dados. Consultas usam `lean()` e ordenam listagens por `createdAt` decrescente, sem critério secundário para empates.
+Rotas cuidam de HTTP e validação do identificador; serviços aplicam filtros; models definem dados. Consultas usam `lean()` e ordenam listagens por `createdAt` decrescente, sem critério secundário para empates. Better Auth é carregado como módulo ESM após conectar ao banco; seu handler é registrado antes do parser JSON, preservando o stream original.
 
 ## Interface
 
@@ -60,6 +65,6 @@ O menu mobile alterna classes e `aria-expanded`. Há elementos semânticos, rót
 - Erros internos retornam mensagem genérica e são registrados no console.
 - Links de WhatsApp usam `noopener noreferrer`.
 
-Não há autenticação, API administrativa, paginação, upload, sessões ou cache de aplicação. As consultas retornam documentos completos, inclusive metadados: não armazene dados privados nos documentos públicos.
+O painel usa Better Auth, sessão no MongoDB e cookies HttpOnly. Cada operação administrativa verifica a sessão e o e-mail autorizado no servidor, com proteção de origem e header próprio nas escritas. Veja [Administração](ADMINISTRACAO.md). Não há paginação, upload ou cache de aplicação. As consultas públicas retornam documentos completos do catálogo, inclusive metadados: não armazene dados privados nessas coleções.
 
-Não há formulário, analytics ou cookies próprios implementados. Hospedagem pode registrar acessos; fontes, imagens remotas e WhatsApp envolvem terceiros. A flag de autorização de depoimentos controla exibição, mas não coleta nem comprova consentimento.
+A vitrine não tem formulários de visitantes ou analytics; o painel usa formulários e cookies de autenticação do administrador. Hospedagem pode registrar acessos; fontes, imagens remotas e WhatsApp envolvem terceiros. A flag de autorização de depoimentos controla exibição, mas não coleta nem comprova consentimento.

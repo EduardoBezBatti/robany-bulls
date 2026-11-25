@@ -2,7 +2,7 @@
 
 O banco é definido na URI de conexão. Os models criam as coleções `animals` e `depoimentos`, com `_id` ObjectId, `createdAt`, `updatedAt` e versionamento `__v` do Mongoose.
 
-Não há painel, login ou endpoints administrativos. Use Compass, Atlas ou mongosh com acesso restrito ao responsável.
+O [painel administrativo](ADMINISTRACAO.md) permite gerenciar os registros com autenticação e validação no servidor. Compass, Atlas e mongosh continuam disponíveis ao responsável pelo banco. As coleções privadas de autenticação são separadas do catálogo e não devem ser publicadas.
 
 ## Animal
 
